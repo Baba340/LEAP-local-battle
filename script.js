@@ -1,2 +1,2 @@
-document.getElementById('divID').style.width = screen.width; 
-document.getElementById('divID').style.height = screen.height;
+document.getElementById('screen').style.width = screen.width; 
+document.getElementById('screen').style.height = screen.height;
