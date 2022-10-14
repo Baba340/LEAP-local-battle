@@ -1,5 +1,43 @@
-#screen{
-  width:1000px;
-  height:1600px;
-  background-color:gray;
+body{ 
+  margin:0px; 
+  padding:0px; 
+}
+#texts input{
+  border:solid 1px black;
+  border-radius:1px;
+}
+#text1{
+  position:absolute;
+  left:0px;
+  top:1310px;
+  width:155px;
+  height:155px;
+}
+#text2{
+  position:absolute;
+  left:155px;
+  top:1310px;
+  width:155px;
+  height:155px;
+}
+#text3{
+  position:absolute;
+  left:310px;
+  top:1310px;
+  width:155px;
+  height:155px;
+}
+#text4{
+  position:absolute;
+  left:465px;
+  top:1310px;
+  width:155px;
+  height:155px;
+}
+#mainButton{
+  position:absolute;
+  left:620px;
+  top:1115px;
+  width:350px;
+  height:350px;
 }
