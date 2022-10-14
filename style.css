@@ -8,36 +8,32 @@ body{
 }
 #text1{
   position:absolute;
-  left:0px;
-  top:1310px;
-  width:155px;
-  height:155px;
+  left:67.5px;
+  top:1248px;
+  width:184px;
+  height:184px;
 }
 #text2{
   position:absolute;
-  left:155px;
-  top:1310px;
-  width:155px;
-  height:155px;
+  left:284.5px;
+  top:1248px;
+  width:184px;
+  height:184px;
 }
 #text3{
   position:absolute;
-  left:310px;
-  top:1310px;
-  width:155px;
-  height:155px;
+  left:501.5px;
+  top:1248px;
+  width:184px;
+  height:184px;
 }
 #text4{
   position:absolute;
-  left:465px;
-  top:1310px;
-  width:155px;
-  height:155px;
+  left:718.5px;
+  top:1248px;
+  width:184px;
+  height:184px;
 }
 #mainButton{
   position:absolute;
-  left:620px;
-  top:1115px;
-  width:350px;
-  height:350px;
 }
