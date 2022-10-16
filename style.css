@@ -2,32 +2,36 @@ body{
   margin:0px; 
   padding:0px; 
 }
-#texts input{
+#btns input{
   border:solid 1px black;
   border-radius:1px;
 }
-#text1{
+#btn1{
+  font-size:50px;
   position:absolute;
   left:67.5px;
   top:1248px;
   width:184px;
   height:184px;
 }
-#text2{
+#btn2{
+  font-size:50px;
   position:absolute;
   left:284.5px;
   top:1248px;
   width:184px;
   height:184px;
 }
-#text3{
+#btn3{
+  font-size:50px;
   position:absolute;
   left:501.5px;
   top:1248px;
   width:184px;
   height:184px;
 }
-#text4{
+#btn4{
+  font-size:50px;
   position:absolute;
   left:718.5px;
   top:1248px;
