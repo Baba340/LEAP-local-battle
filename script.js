@@ -6,6 +6,8 @@ const ctx = canvas.getContext("2d");
 ctx.fillStyle = "gray";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+let check = 0;
+
 //ボタン要素取得
 let btn1 = document.getElementById("btn1");
 let btn2 = document.getElementById("btn2");
@@ -32,12 +34,12 @@ var wordsEnRandom = odd(wordsRandom.flat());
 alert(wordsJpRandom +"\n"+ wordsEnRandom);
 
 //問題メイン処理
+forML();
+
+async function forML(){
 for(let m=0;m<=questionN;m++){
   let wordM = split(wordsEnRandom[m]);
-  forL(wordM);
-}
-function forL(wordM){
-  for(let l=0; l<=wordM.length-1; l++){
+   for(let l=0; l<=wordM.length-1; l++){
     let wordL = wordM[l];
     let wordBox = [wordL];
   wordBox.push(random(abcs,3));
@@ -46,9 +48,11 @@ function forL(wordM){
     btn2.value = wordBox[1];    
     btn3.value = wordBox[2];
     btn4.value = wordBox[3];
-    alert(wordBox);
-  }
+    await new Promise( res =>btn1.onclick=res );
 }
+}
+}
+ 
 
 //配列からランダムにn個取って並べる(重複なし)
 function random(array, num) {
