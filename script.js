@@ -5,14 +5,20 @@ const ctx = canvas.getContext("2d");
 //画面描画
 ctx.fillStyle = "gray";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-let check = 0;
+ctx.beginPath();
+ctx.fillStyle = "black";
+ctx.moveTo(0,732.5);
+ctx.lineTo(970,732.5);
+ctx.stroke();
 
 //ボタン要素取得
 let btn1 = document.getElementById("btn1");
 let btn2 = document.getElementById("btn2");
 let btn3 = document.getElementById("btn3");
 let btn4 = document.getElementById("btn4");
+
+//インプットした文字の配列
+let inputed = [];
 
 //abc配列の定義
 const abcs = [...'abcdefghijklmnopqrstuvwxyz'];
@@ -21,11 +27,12 @@ const abcs = [...'abcdefghijklmnopqrstuvwxyz'];
 var words =[
 ["RINGO","apple"],
 ["BANANA","banana"],
-["ORENJI","orange"]
+["ORENJI","orange"],
+["kiminonahananndesukatokiiteirunodearimasu","baba"]
 ];
 
 //問題をランダム化(JpEn分割)
-var questionN = 3;
+var questionN = 4;
 var wordsRandom = random(words,questionN);
 
 var wordsJpRandom = even(wordsRandom.flat());
@@ -37,20 +44,45 @@ alert(wordsJpRandom +"\n"+ wordsEnRandom);
 forML();
 
 async function forML(){
-for(let m=0;m<=questionN;m++){
-  let wordM = split(wordsEnRandom[m]);
-   for(let l=0; l<=wordM.length-1; l++){
-    let wordL = wordM[l];
-    let wordBox = [wordL];
-  wordBox.push(random(abcs,3));
-    wordBox = random(wordBox.flat(),4);
-    btn1.value = wordBox[0];
-    btn2.value = wordBox[1];    
-    btn3.value = wordBox[2];
-    btn4.value = wordBox[3];
-    await new Promise( res =>btn1.onclick=res );
-}
-}
+ctx.clearRect(67.5,1158,835,70);
+ctx.clearRect(67.5,287.5,835,377.5);
+  //問題数for文
+  for(let m=0;m<=questionN;m++){
+    let wordM = split(wordsEnRandom[m]);
+    ctx.clearRect(67.5,1158,835,70);
+    inputed = [];
+    //問題文表示
+    ctx.clearRect(67.5,287.5,835,377.5);
+    ctx.font = "60px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillStyle = "black";
+    ctx.fillText(wordsJpRandom[m],485,506.25);
+    //文字数for文
+    for(let l=0; l<=wordM.length-1; l++){
+      //入力文字選択肢(wordBox)作成
+      let wordL = wordM[l];
+      let wordBox = [wordL];
+      let ABC = abcs;
+      ABC.splice(abcs.indexOf(wordL),1);
+      wordBox.push(random(ABC,3));
+      wordBox = random(wordBox.flat(),4);
+      //wordBoxとボタンの対応
+      btn1.value = wordBox[0];
+      btn2.value = wordBox[1];    
+      btn3.value = wordBox[2];
+      btn4.value = wordBox[3];
+      //正解入力時処理
+      let btn = "btn" + String(wordBox.indexOf(wordL)+1);
+      await new Promise(res => document.getElementById(btn).onclick=res);
+      inputed.push(wordL);
+      ctx.clearRect(67.5,1158,835,70);
+      ctx.font = "60px sans-serif";
+      ctx.textAlign = "right";
+      ctx.fillStyle = "black";
+      ctx.fillText(inputed.join(""),902.5,1215);
+    }
+  }
+//
 }
  
 
