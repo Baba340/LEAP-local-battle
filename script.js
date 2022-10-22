@@ -42,7 +42,7 @@ var wordsRandom = random(words,questionN);
 var wordsJpRandom = even(wordsRandom.flat());
 var wordsEnRandom = odd(wordsRandom.flat());
 
-alert(wordsJpRandom +"\n"+ wordsEnRandom);
+//alert(wordsJpRandom +"\n"+ wordsEnRandom);
 
 //問題メイン処理
 forML();
