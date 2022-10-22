@@ -3,7 +3,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 //画面描画
-ctx.fillStyle = "gray";
+ctx.fillStyle = "#131328";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.beginPath();
 ctx.fillStyle = "black";
@@ -16,6 +16,10 @@ let btn1 = document.getElementById("btn1");
 let btn2 = document.getElementById("btn2");
 let btn3 = document.getElementById("btn3");
 let btn4 = document.getElementById("btn4");
+
+//レート
+let rate  = 1000; 
+let title = "LEAPer";
 
 //インプットした文字の配列
 let inputed = [];
@@ -68,7 +72,7 @@ ctx.clearRect(67.5,287.5,835,377.5);
       wordBox = random(wordBox.flat(),4);
       //wordBoxとボタンの対応
       btn1.value = wordBox[0];
-      btn2.value = wordBox[1];    
+      btn2.value = wordBox[1];
       btn3.value = wordBox[2];
       btn4.value = wordBox[3];
       //正解入力時処理
@@ -85,6 +89,36 @@ ctx.clearRect(67.5,287.5,835,377.5);
 //
 }
  
+//バナー描画
+banar();
+function banar(){
+  ctx.beginPath();
+  ctx.fillStyle = "#5c3e77";
+  ctx.moveTo(0,40);
+  ctx.lineTo(400,40);
+  ctx.lineTo(400-90/Math.sqrt(3),130);
+  ctx.lineTo(400,220);
+  ctx.lineTo(0,220);
+  ctx.lineTo(0,40);
+  ctx.closePath();
+  ctx.fill();
+  ctx.beginPath();
+  ctx.fillStyle ="#9e4ce0";
+  ctx.moveTo(0,60);
+  ctx.lineTo(400-20*Math.sqrt(3),60);
+  ctx.lineTo((400-90/Math.sqrt(3))-20*Math.sqrt(2),130);
+  ctx.lineTo(400-20*Math.sqrt(3),200);
+  ctx.lineTo(0,200);
+  ctx.lineTo(0,60);
+  ctx.closePath();
+  ctx.fill();
+  ctx.font = "30px sans-serif";
+  ctx.textAlign = "left";
+  ctx.fillStyle = "yellow";
+  ctx.fillText("T"+ String(rate),15,160);
+  ctx.fillStyle = "white";
+  ctx.fillText(title,15,190);
+}
 
 //配列からランダムにn個取って並べる(重複なし)
 function random(array, num) {
