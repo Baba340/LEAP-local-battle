@@ -1,3 +1,8 @@
+//BGM
+//var music = new Audio('LEAP.mp4');
+//var muteButton = document.getElementById("mute");
+//music.loop=true;
+
 //2d取得
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -5,19 +10,18 @@ const ctx = canvas.getContext("2d");
 //画面描画
 ctx.fillStyle = "#131328";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
-ctx.beginPath();
-ctx.fillStyle = "black";
-ctx.moveTo(0,732.5);
-ctx.lineTo(970,732.5);
-ctx.stroke();
 
 //ボタン要素取得
 let btn1 = document.getElementById("btn1");
 let btn2 = document.getElementById("btn2");
 let btn3 = document.getElementById("btn3");
 let btn4 = document.getElementById("btn4");
+btn1.style.display ="none";
+btn2.style.display ="none";
+btn3.style.display ="none";
+btn4.style.display ="none";
 
-//レート
+//レート・称号
 let rate  = 1000; 
 let title = "LEAPer";
 
@@ -29,10 +33,9 @@ const abcs = [...'abcdefghijklmnopqrstuvwxyz'];
 
 //問題
 var words =[
-["RINGO","apple"],
-["BANANA","banana"],
-["ORENJI","orange"],
-["kiminonahananndesukatokiiteirunodearimasu","baba"]
+["りんご","apple"],
+["バナナ","banana"],
+["みかん","orange"]
 ];
 
 //問題をランダム化(JpEn分割)
@@ -44,10 +47,18 @@ var wordsEnRandom = odd(wordsRandom.flat());
 
 //alert(wordsJpRandom +"\n"+ wordsEnRandom);
 
-//問題メイン処理
-forML();
 
+//functions
+forML();
+banar();
+arrow();
+
+//問題メイン処理
 async function forML(){
+btn1.style.display ="block";
+btn2.style.display ="block";
+btn3.style.display ="block";
+btn4.style.display ="block";
 ctx.clearRect(67.5,1158,835,70);
 ctx.clearRect(67.5,287.5,835,377.5);
   //問題数for文
@@ -61,6 +72,13 @@ ctx.clearRect(67.5,287.5,835,377.5);
     ctx.textAlign = "center";
     ctx.fillStyle = "black";
     ctx.fillText(wordsJpRandom[m],485,506.25);
+    //問題数カウント表示
+    ctx.fillStyle = "#131328";
+    ctx.fillRect(0,245,970,40);
+    ctx.font = "40px sans-serif";
+    ctx.textAlign = "right";
+    ctx.fillStyle = "white";
+    ctx.fillText(String(m+1) + "/" + String(questionN),902.5,285);
     //文字数for文
     for(let l=0; l<=wordM.length-1; l++){
       //入力文字選択肢(wordBox)作成
@@ -77,20 +95,43 @@ ctx.clearRect(67.5,287.5,835,377.5);
       btn4.value = wordBox[3];
       //正解入力時処理
       let btn = "btn" + String(wordBox.indexOf(wordL)+1);
-      await new Promise(res => document.getElementById(btn).onclick=res);
+      await new Promise(res => document.getElementById(btn).onclick = res);
       inputed.push(wordL);
       ctx.clearRect(67.5,1158,835,70);
       ctx.font = "60px sans-serif";
-      ctx.textAlign = "right";
+      ctx.textAlign = "center";
       ctx.fillStyle = "black";
-      ctx.fillText(inputed.join(""),902.5,1215);
+      ctx.fillText(inputed.join(""),485,1215);
     }
+    //解答・解説
+    ctx.clearRect(67.5,800,416.5,100);//En
+    ctx.clearRect(486,800,416.5,100);//Jp
+    ctx.clearRect(67.5,902,835,214);//Explain
+    ctx.font = "30px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillStyle = "black";
+    ctx.fillText(wordsJpRandom[m],275.75,865);
+    ctx.fillText(wordsEnRandom[m],694.25,865);
   }
 //
 }
- 
+
+//矢印描画
+function arrow(){
+  ctx.beginPath();
+  ctx.fillStyle = "white";
+  ctx.moveTo(455,685);
+  ctx.lineTo(515,685);
+  ctx.lineTo(515,732.5);
+  ctx.lineTo(545,732.5);
+  ctx.lineTo(485,780);
+  ctx.lineTo(425,732.5);
+  ctx.lineTo(455,732.5);
+  ctx.lineTo(455,685);
+  ctx.fill();
+}
+
 //バナー描画
-banar();
 function banar(){
   ctx.beginPath();
   ctx.fillStyle = "#5c3e77";
@@ -115,9 +156,20 @@ function banar(){
   ctx.font = "30px sans-serif";
   ctx.textAlign = "left";
   ctx.fillStyle = "yellow";
-  ctx.fillText("T"+ String(rate),15,160);
+  ctx.fillText("🏆"+ String(rate),15,160);
   ctx.fillStyle = "white";
   ctx.fillText(title,15,190);
+}
+
+//ミュート機能
+function mute(){
+  if(muteButton.value=="Mute"){
+    music.muted = true;
+    muteButton.value="Muted";
+  }else if (muteButton.value=="Muted"){
+    music.muted = false;
+    muteButton.value="Mute";
+  }
 }
 
 //配列からランダムにn個取って並べる(重複なし)
@@ -167,7 +219,7 @@ function odd(array){
 
 //文字列の分解
 function split(text){
-   return text.split("");
+  return text.split("");
 }
 
 //重複チェック
