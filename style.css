@@ -45,6 +45,16 @@ body{
   width:184px;
   height:184px;
 }
-#mainButton{
+#mute{
+  -webkit-appearance: none;
+  border:solid 1px black;
+  border-radius:0px;
+  color:#131328;
+  font-size:40px;
   position:absolute;
+  left:782.5px;
+  top:40px;
+  text-align:center;
+  padding:0px;
+  width:120px;
 }
