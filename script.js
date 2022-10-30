@@ -25,14 +25,13 @@ btn2.style.display ="none";
 btn3.style.display ="none";
 btn4.style.display ="none";
 
-//レート・称号
+//グローバル変数
 let rate  = 1000; 
 let title = "LEAPer";
-
-//インプットした文字の配列
 let inputed = [];
-
-//abc配列の定義
+let TorF = "";
+let Tcount = 0;
+let Fcount = 0;
 const abcs = [...'abcdefghijklmnopqrstuvwxyz'];
 
 //問題
@@ -55,7 +54,6 @@ var wordsEnRandom = odd(wordsRandom.flat());
 //functions
 forML();
 banar();
-arrow();
 
 //問題メイン処理
 async function forML(){
@@ -97,15 +95,15 @@ btn4.style.display ="block";
       //正解入力時処理
       let btn = "btn" + String(wordBox.indexOf(wordL)+1);
       let btnArray=["1","2","3","4"];
-      btnArray.splice(wordBox.indexOf(wordL)+1,1);
-
-
-
-
+      btnArray.splice(wordBox.indexOf(wordL),1);
+      //オンクリック処理
       const skip = await new Promise( res =>{
-        btn.onclick =()=>res( false );
-        //trueの処理（未完成）
+        document.getElementById(btn).onclick =()=>res( false );
+        document.getElementById("btn"+String(btnArray[0])).onclick =()=>res( true );
+        document.getElementById("btn"+String(btnArray[1])).onclick =()=>res( true );
+        document.getElementById("btn"+String(btnArray[2])).onclick =()=>res( true );
       } );
+      //入力済み文字の描画
       inputed.push(wordL);
       ctx.fillStyle = "#131328";
       ctx.fillRect(67.5,1158,835,70);
@@ -120,7 +118,17 @@ btn4.style.display ="block";
       ctx.strokeStyle = 'white';
       ctx.lineWidth= 5;
       ctx.stroke();
-      if(skip){break}
+      //awaitの正解・不正解時処理
+      TorF = "T";
+      if(skip){TorF = "F";break;}
+    }
+    //正解・不正解時処理
+    if(TorF == "T"){
+      arrow("T");
+      Tcount += 1;
+    }else if(TorF == "F"){
+      arrow("F");
+      Fcount += 1;
     }
     //解答・解説
     ctx.clearRect(67.5,800,416.5,100);//En
@@ -131,6 +139,19 @@ btn4.style.display ="block";
     ctx.fillStyle = "black";
     ctx.fillText(wordsJpRandom[m],275.75,865);
     ctx.fillText(wordsEnRandom[m],694.25,865);
+    //正解・不正解数描画
+    ctx.fillStyle = "#131328";
+    ctx.fillRect(67.5,707.5,356.5,50);
+    ctx.font = "50px sans-serif";
+    ctx.textAlign = "right";
+    ctx.fillStyle = "red";
+    ctx.fillText(Tcount,415,757.5);
+    ctx.fillStyle = "#131328";
+    ctx.fillRect(545,707.5,356.5,50);
+    ctx.font = "50px sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillStyle = "blue";
+    ctx.fillText(Fcount,555,757.5);
     //入力文字クリア
     ctx.fillStyle = "#131328";
     ctx.fillRect(67.5,1158,835,70);
@@ -139,9 +160,13 @@ btn4.style.display ="block";
 }
 
 //矢印描画
-function arrow(){
+function arrow(TF){
+  if(TF == "T"){
+    ctx.fillStyle="red";
+  }else if(TF == "F"){
+    ctx.fillStyle="blue";
+  }
   ctx.beginPath();
-  ctx.fillStyle = "white";
   ctx.moveTo(455,685);
   ctx.lineTo(515,685);
   ctx.lineTo(515,732.5);
@@ -151,6 +176,22 @@ function arrow(){
   ctx.lineTo(455,732.5);
   ctx.lineTo(455,685);
   ctx.fill();
+  if(TF == "T"){
+    ctx.beginPath () ;
+    ctx.arc(485,732.5,22,0*Math.PI/180,360*Math.PI/180,false);
+    ctx.strokeStyle = "white" ;
+    ctx.stroke() ;
+  }else if(TF == "F"){
+    ctx.strokeStyle = "white" ;
+    ctx.beginPath ();
+    ctx.moveTo(465,712.5);
+    ctx.lineTo(505,752.5);
+    ctx.stroke();
+    ctx.beginPath ();
+    ctx.lineTo(505,712.5);
+    ctx.lineTo(465,752.5);
+    ctx.stroke();
+  }
 }
 
 //バナー描画
