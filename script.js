@@ -98,11 +98,13 @@ btn4.style.display ="block";
       let btn = "btn" + String(wordBox.indexOf(wordL)+1);
       let btnArray=["1","2","3","4"];
       btnArray.splice(wordBox.indexOf(wordL)+1,1);
+
+
+
+
       const skip = await new Promise( res =>{
-        btn1.onclick =()=>res( false );
-        btn2.onclick =()=>res( true );
-        btn3.onclick =()=>res( true );
-        btn4.onclick =()=>res( true );
+        btn.onclick =()=>res( false );
+        //trueの処理（未完成）
       } );
       inputed.push(wordL);
       ctx.fillStyle = "#131328";
