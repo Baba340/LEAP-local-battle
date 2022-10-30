@@ -10,6 +10,10 @@ const ctx = canvas.getContext("2d");
 //画面描画
 ctx.fillStyle = "#131328";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.clearRect(67.5,800,416.5,100);//Jp
+ctx.clearRect(486,800,416.5,100);//En
+ctx.clearRect(67.5,902,835,214);//explain
+ctx.clearRect(67.5,287.5,835,377.5);//question
 
 //ボタン要素取得
 let btn1 = document.getElementById("btn1");
@@ -39,7 +43,7 @@ var words =[
 ];
 
 //問題をランダム化(JpEn分割)
-var questionN = 4;
+var questionN = 3;
 var wordsRandom = random(words,questionN);
 
 var wordsJpRandom = even(wordsRandom.flat());
@@ -59,12 +63,9 @@ btn1.style.display ="block";
 btn2.style.display ="block";
 btn3.style.display ="block";
 btn4.style.display ="block";
-ctx.clearRect(67.5,1158,835,70);
-ctx.clearRect(67.5,287.5,835,377.5);
   //問題数for文
   for(let m=0;m<=questionN;m++){
     let wordM = split(wordsEnRandom[m]);
-    ctx.clearRect(67.5,1158,835,70);
     inputed = [];
     //問題文表示
     ctx.clearRect(67.5,287.5,835,377.5);
@@ -95,13 +96,29 @@ ctx.clearRect(67.5,287.5,835,377.5);
       btn4.value = wordBox[3];
       //正解入力時処理
       let btn = "btn" + String(wordBox.indexOf(wordL)+1);
-      await new Promise(res => document.getElementById(btn).onclick = res);
+      let btnArray=["1","2","3","4"];
+      btnArray.splice(wordBox.indexOf(wordL)+1,1);
+      const skip = await new Promise( res =>{
+        btn1.onclick =()=>res( false );
+        btn2.onclick =()=>res( true );
+        btn3.onclick =()=>res( true );
+        btn4.onclick =()=>res( true );
+      } );
       inputed.push(wordL);
-      ctx.clearRect(67.5,1158,835,70);
+      ctx.fillStyle = "#131328";
+      ctx.fillRect(67.5,1158,835,70);
       ctx.font = "60px sans-serif";
       ctx.textAlign = "center";
-      ctx.fillStyle = "black";
+      ctx.fillStyle = "#ffd44f";
       ctx.fillText(inputed.join(""),485,1215);
+      var txw = ctx.measureText(inputed.join(""));
+      ctx.beginPath();
+      ctx.moveTo(475-txw.width/2,1225);
+      ctx.lineTo(495+txw.width/2,1225);
+      ctx.strokeStyle = 'white';
+      ctx.lineWidth= 5;
+      ctx.stroke();
+      if(skip){break}
     }
     //解答・解説
     ctx.clearRect(67.5,800,416.5,100);//En
@@ -112,6 +129,9 @@ ctx.clearRect(67.5,287.5,835,377.5);
     ctx.fillStyle = "black";
     ctx.fillText(wordsJpRandom[m],275.75,865);
     ctx.fillText(wordsEnRandom[m],694.25,865);
+    //入力文字クリア
+    ctx.fillStyle = "#131328";
+    ctx.fillRect(67.5,1158,835,70);
   }
 //
 }
