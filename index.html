@@ -3,10 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica+SC" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada" rel="stylesheet">
 </head>
 <body>
 <canvas id="canvas" width="970px" height="1465px" style="padding:0px;"></canvas>
 <!--入力ボタン-->
+<div id="loading">ALC<br>PGM<br>CEO</div>
+<h1 id="title">L E A P</h1>
+<div id="longLeap">
+ <font color="#ff6e00">L</font>
+ <font>earn</font>
+ <font color="#ff6e00">E</font>
+ <font>nglish vocabulary, both</font>
+ <font color="#ff6e00">A</font>
+ <font>ctive and</font>
+ <font color="#ff6e00">P</font>
+ <font>assive</font>
+</div>
+<div id="profile">
+ <b>制作 / 編集&emsp;BABA KOKI</b>
+  <br>
+ <b>原本著者&emsp;TAKEOKA HIRONOBU</b>
+  <br>
+  <br>
+ <font>元祖LEAPer&emsp;ARITA TAIYO</font>
+  <br>
+ <font>協賛&emsp;ARAKAWA TAKESHI</font>
+  <br>
+ <font>Androider&emsp;NODA KOGA</font>
+</div>
+<input type="text" id="questionNin" placeholder="問題数を入力">
+<input type="button" value="START" onclick="start();" id="startBtn"></input>
+<input type="button" value="→RESULT" onclick="result()" id="resultBtn"></input>
+
 <div id="btns">
  <input type="button" value="" onclick="btn1()" id="btn1" onclick="btn1()"></input>
  <input type="button" value="" onclick="()" id="btn2"></input>
@@ -14,6 +45,10 @@
  <input type="button" value="" onclick="()" id="btn4"></input>
 </div>
 <!--<input type="button" onclick="mute()" value="Mute" id="mute">-->
+<div id="ques">あああ</div>
+<div id="ansJp">いいい</div>
+<div id="ansEn">ううう</div>
+<div id="exp">えええ</div>
 <script src="script.js" ></script>
 </body>
 </html>
