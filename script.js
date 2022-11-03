@@ -80,7 +80,7 @@ window.onload = function() {
     loading.animate([
       {opacity: 0},
       {opacity: 1}
-    ],1500);
+    ],2000);
     setTimeout(function() {
       setTimeout(function() {
 　　　　　//第四画面
