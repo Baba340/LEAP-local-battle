@@ -7,56 +7,134 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-//画面描画
-ctx.fillStyle = "#131328";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-ctx.clearRect(67.5,800,416.5,100);//Jp
-ctx.clearRect(486,800,416.5,100);//En
-ctx.clearRect(67.5,902,835,214);//explain
-ctx.clearRect(67.5,287.5,835,377.5);//question
-
-//ボタン要素取得
+//html要素取得
+let loading = document.getElementById("loading");
+let ques = document.getElementById("ques");
+let ansJp = document.getElementById("ansJp");
+let ansEn = document.getElementById("ansEn");
+let exp = document.getElementById("exp");
+let title = document.getElementById("title");
+let longLeap = document.getElementById("longLeap");
+let profile = document.getElementById("profile");
+let startBtn = document.getElementById("startBtn");
+let resultBtn = document.getElementById("resultBtn");
+let questionNin = document.getElementById("questionNin");
 let btn1 = document.getElementById("btn1");
 let btn2 = document.getElementById("btn2");
 let btn3 = document.getElementById("btn3");
 let btn4 = document.getElementById("btn4");
+//html要素非表示
+ques.style.display ="none";
+ansJp.style.display ="none";
+ansEn.style.display ="none";
+exp.style.display ="none";
+title.style.display ="none";
+longLeap.style.display ="none";
+profile.style.display ="none";
+startBtn.style.display ="none";
+resultBtn.style.display ="none";
+questionNin.style.display ="none";
 btn1.style.display ="none";
 btn2.style.display ="none";
 btn3.style.display ="none";
 btn4.style.display ="none";
 
-//グローバル変数
+//グローバル変数・配列
+let questionN=1;
+let wordsRandom = "";
+let wordsJpRandom = "";
+let wordsEnRandom = "";
 let rate  = 1000; 
-let title = "LEAPer";
+let titles = "LEAPer";
 let inputed = [];
 let TorF = "";
 let Tcount = 0;
 let Fcount = 0;
+let finishCheckbox = 0;
 const abcs = [...'abcdefghijklmnopqrstuvwxyz'];
 
 //問題
 var words =[
-["りんご","apple"],
+["(-to doで)(動作や状態を)する傾向にある","tend"],
 ["バナナ","banana"],
 ["みかん","orange"]
 ];
 
-//問題をランダム化(JpEn分割)
-var questionN = 3;
-var wordsRandom = random(words,questionN);
+//解説
+var exps = {
+  "tend":"ingでは用いれない",
+  "banana":"黄色い果物",
+  "orange":"その名の通りオレンジ色の果物で、日本ではみかんともいうが、それらの違いは不明瞭"
+};
 
-var wordsJpRandom = even(wordsRandom.flat());
-var wordsEnRandom = odd(wordsRandom.flat());
+//オンロード処理
+window.onload = function() {
+  //第一画面
+  loading.style.display ="none";
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, canvas.width,canvas.height);
+  setTimeout(function() {
+    //第二画面
+    loading.style.display ="block";
+    loading.style.opacity = 0;
+    loading.animate([
+      {opacity: 0},
+      {opacity: 1}
+    ],1500);
+    setTimeout(function() {
+      setTimeout(function() {
+　　　　　//第四画面
+        ctx.fillStyle = "#131328";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        title.style.display ="block";
+        longLeap.style.display ="block";
+        profile.style.display ="block";
+        startBtn.style.display ="block";
+        questionNin.style.display ="block";
+      }, 1000);
+    }, 1000);
+  }, 1000);
+}
 
-//alert(wordsJpRandom +"\n"+ wordsEnRandom);
-
-
-//functions
-forML();
-banar();
+//スタート
+function start(){
+  setTimeout(function() {
+    //問題数入力時の各処理
+    if(document.getElementById("questionNin").value == ""){
+      alert("問題数を入力してください");
+      return 1;
+    }else if(isNaN(document.getElementById("questionNin").value)){
+      alert("問題数入力が正しくありません\n数字で入力してください");
+      return 1;
+    }else if(Number(document.getElementById("questionNin").value) <=0 | Number(document.getElementById("questionNin").value) > words.length){
+      alert("問題数は1から" + words.length+ "\nの範囲で入力してください。");
+      return 1;
+    }else{
+      //問題をランダム化(JpEn分割)
+      questionN = Number(document.getElementById("questionNin").value);
+      wordsRandom = random(words,questionN);
+      wordsJpRandom = even(wordsRandom.flat());
+      wordsEnRandom = odd(wordsRandom.flat());
+    }
+    //画面遷移
+    title.style.display ="none";
+    longLeap.style.display ="none";
+    profile.style.display ="none";
+    startBtn.style.display ="none";
+    questionNin.style.display ="none";
+    banar();
+    forML();
+  },500);
+}
 
 //問題メイン処理
 async function forML(){
+//画面描画
+ctx.clearRect(67.5,800,416.5,100);//Jp
+ctx.clearRect(486,800,416.5,100);//En
+ctx.clearRect(67.5,902,835,214);//explain
+ctx.clearRect(67.5,287.5,835,377.5);//question
+//ボタン表示
 btn1.style.display ="block";
 btn2.style.display ="block";
 btn3.style.display ="block";
@@ -66,11 +144,12 @@ btn4.style.display ="block";
     let wordM = split(wordsEnRandom[m]);
     inputed = [];
     //問題文表示
-    ctx.clearRect(67.5,287.5,835,377.5);
-    ctx.font = "60px sans-serif";
-    ctx.textAlign = "center";
-    ctx.fillStyle = "black";
-    ctx.fillText(wordsJpRandom[m],485,506.25);
+    ques.style.display ="block";
+    ques.innerText = wordsJpRandom[m];
+    let quesLeft = String(485-(ques.clientWidth/2))+"px";
+    ques.style.left = quesLeft;
+    let quesTop = String(476.25-(ques.clientHeight/2))+"px";
+    ques.style.top = quesTop;
     //問題数カウント表示
     ctx.fillStyle = "#131328";
     ctx.fillRect(0,245,970,40);
@@ -134,11 +213,28 @@ btn4.style.display ="block";
     ctx.clearRect(67.5,800,416.5,100);//En
     ctx.clearRect(486,800,416.5,100);//Jp
     ctx.clearRect(67.5,902,835,214);//Explain
-    ctx.font = "30px sans-serif";
-    ctx.textAlign = "center";
-    ctx.fillStyle = "black";
-    ctx.fillText(wordsJpRandom[m],275.75,865);
-    ctx.fillText(wordsEnRandom[m],694.25,865);
+    //日本語問題描画
+    ansJp.style.display ="block";
+    ansJp.innerText = wordsJpRandom[m];
+    let ansJpLeft = String(275.75-(ansJp.clientWidth/2))+"px";
+    ansJp.style.left = ansJpLeft;
+    let ansJpTop = String(850-(ansJp.clientHeight/2))+"px";
+    ansJp.style.top = ansJpTop;
+    //英語回答描画
+    ansEn.style.display ="block";
+    ansEn.innerText = wordsEnRandom[m];
+    let ansEnLeft = String(693.25-(ansEn.clientWidth/2))+"px";
+    ansEn.style.left = ansEnLeft;
+    let ansEnTop = String(850-(ansEn.clientHeight/2))+"px";
+    ansEn.style.top = ansEnTop;
+    //解説描画
+    exp.style.display ="block";
+    exp.innerText = exps[String(wordsEnRandom[m])];
+    let expLeft = String(485-(exp.clientWidth/2))+"px";
+    exp.style.left = expLeft;
+    let expTop = String(1009-(exp.clientHeight/2))+"px";
+    exp.style.top = expTop;
+
     //正解・不正解数描画
     ctx.fillStyle = "#131328";
     ctx.fillRect(67.5,707.5,356.5,50);
@@ -156,7 +252,26 @@ btn4.style.display ="block";
     ctx.fillStyle = "#131328";
     ctx.fillRect(67.5,1158,835,70);
   }
-//
+}
+
+//終了時処理→結果表示ボタン表示
+setInterval(finish,100);
+function finish(){
+  //終了時の条件
+  if(Tcount + Fcount == questionN && finishCheckbox == 0){
+    finishCheckbox = 1;
+    //結果表示ボタン表示
+    btn1.style.display ="none";
+    btn2.style.display ="none";
+    btn3.style.display ="none";
+    btn4.style.display ="none";
+    resultBtn.style.display ="block";
+  }
+}
+
+//結果表示
+function result(){
+  alert("result");
 }
 
 //矢印描画
@@ -221,7 +336,7 @@ function banar(){
   ctx.fillStyle = "yellow";
   ctx.fillText("🏆"+ String(rate),15,160);
   ctx.fillStyle = "white";
-  ctx.fillText(title,15,190);
+  ctx.fillText(titles,15,190);
 }
 
 //ミュート機能
