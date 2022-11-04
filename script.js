@@ -16,6 +16,7 @@ let exp = document.getElementById("exp");
 let title = document.getElementById("title");
 let longLeap = document.getElementById("longLeap");
 let profile = document.getElementById("profile");
+let news = document.getElementById("news");
 let startBtn = document.getElementById("startBtn");
 let resultBtn = document.getElementById("resultBtn");
 let questionNin = document.getElementById("questionNin");
@@ -31,6 +32,7 @@ exp.style.display ="none";
 title.style.display ="none";
 longLeap.style.display ="none";
 profile.style.display ="none";
+news.style.display ="none";
 startBtn.style.display ="none";
 resultBtn.style.display ="none";
 questionNin.style.display ="none";
@@ -54,7 +56,8 @@ let finishCheckbox = 0;
 const abcs = [...'abcdefghijklmnopqrstuvwxyz'];
 
 //問題
-var words =[
+var wordsBef =[
+//No.1300〜
 ["(-to doで)(動作や状態を)する傾向にある","tend"],
 ["バナナ","banana"],
 ["みかん","orange"]
@@ -89,6 +92,7 @@ window.onload = function() {
         title.style.display ="block";
         longLeap.style.display ="block";
         profile.style.display ="block";
+        news.style.display ="block";
         startBtn.style.display ="block";
         questionNin.style.display ="block";
       }, 1000);
@@ -100,26 +104,37 @@ window.onload = function() {
 function start(){
   setTimeout(function() {
     //問題数入力時の各処理
-    if(document.getElementById("questionNin").value == ""){
-      alert("問題数を入力してください");
+    let from = document.getElementById("questionFrom");
+    let to = document.getElementById("questionTo");
+    //配列の1番目=No.1300より
+    let fromNo = Number(from.value) - 1299;
+    let toNo = Number(to.value) - 1299
+    if(from.value == ""||to.value == ""){
+      alert("範囲を入力してください");
       return 1;
-    }else if(isNaN(document.getElementById("questionNin").value)){
-      alert("問題数入力が正しくありません\n数字で入力してください");
+    }else if(Number.isNaN(from)||Number.isNaN(to)){
+      alert("範囲入力が正しくありません\n数字で入力してください");
       return 1;
-    }else if(Number(document.getElementById("questionNin").value) <=0 | Number(document.getElementById("questionNin").value) > words.length){
-      alert("問題数は1から" + words.length+ "\nの範囲で入力してください。");
+    }else if(fromNo <=0 || toNo- fromNo + 1 > wordsBef.length || toNo - fromNo + 1 <= 0 || fromNo > wordsBef.length || toNo > wordsBef.length){
+      alert("範囲入力が正しくありません\n範囲を確認してください");
       return 1;
     }else{
       //問題をランダム化(JpEn分割)
-      questionN = Number(document.getElementById("questionNin").value);
+      let words = [];
+      for(let i = fromNo-1; i <= toNo-1; i++){
+        words.push(wordsBef[i]);
+      }
+      questionN = (toNo - fromNo + 1);
       wordsRandom = random(words,questionN);
       wordsJpRandom = even(wordsRandom.flat());
       wordsEnRandom = odd(wordsRandom.flat());
+      //alert(questionN +"\n"+ words +"\n"+ wordsRandom +"\n"+ wordsJpRandom +"\n"+ wordsEnRandom);
     }
     //画面遷移
     title.style.display ="none";
     longLeap.style.display ="none";
     profile.style.display ="none";
+    news.style.display ="none";
     startBtn.style.display ="none";
     questionNin.style.display ="none";
     banar();
@@ -130,10 +145,11 @@ function start(){
 //問題メイン処理
 async function forML(){
 //画面描画
+ctx.clearRect(67.5,287.5,835,377.5);//question
 ctx.clearRect(67.5,800,416.5,100);//Jp
 ctx.clearRect(486,800,416.5,100);//En
 ctx.clearRect(67.5,902,835,214);//explain
-ctx.clearRect(67.5,287.5,835,377.5);//question
+
 //ボタン表示
 btn1.style.display ="block";
 btn2.style.display ="block";
@@ -265,6 +281,7 @@ function finish(){
     btn2.style.display ="none";
     btn3.style.display ="none";
     btn4.style.display ="none";
+    ques.style.display ="none";
     resultBtn.style.display ="block";
   }
 }
