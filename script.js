@@ -19,6 +19,7 @@ let profile = document.getElementById("profile");
 let news = document.getElementById("news");
 let startBtn = document.getElementById("startBtn");
 let resultBtn = document.getElementById("resultBtn");
+let backTitleBtn = document.getElementById("backTitleBtn");
 let questionNin = document.getElementById("questionNin");
 let btn1 = document.getElementById("btn1");
 let btn2 = document.getElementById("btn2");
@@ -35,6 +36,7 @@ profile.style.display ="none";
 news.style.display ="none";
 startBtn.style.display ="none";
 resultBtn.style.display ="none";
+backTitleBtn.style.display ="none";
 questionNin.style.display ="none";
 btn1.style.display ="none";
 btn2.style.display ="none";
@@ -42,25 +44,32 @@ btn3.style.display ="none";
 btn4.style.display ="none";
 
 //グローバル変数・配列
+let questionStartNum = 1300;
+let from = "";
+let to = "";
+let fromNo = "";
+let toNo = "";
 let questionN=1;
 let wordsRandom = "";
 let wordsJpRandom = "";
 let wordsEnRandom = "";
-let rate  = 1000; 
+let rate  = localStorage.getItem("rate"); 
 let titles = "LEAPer";
 let inputed = [];
+let falseQues = [];
 let TorF = "";
 let Tcount = 0;
 let Fcount = 0;
 let finishCheckbox = 0;
-const abcs = [...'abcdefghijklmnopqrstuvwxyz'];
+let abcs = [...'abcdefghijklmnopqrstuvwxyz'];
 
 //問題
 var wordsBef =[
-//No.1300〜
+//No.questionStartNum〜
 ["(-to doで)(動作や状態を)する傾向にある","tend"],
 ["バナナ","banana"],
-["みかん","orange"]
+["みかん","orange"],
+["〜として","as"]
 ];
 
 //解説
@@ -95,6 +104,7 @@ window.onload = function() {
         news.style.display ="block";
         startBtn.style.display ="block";
         questionNin.style.display ="block";
+        banar();
       }, 1000);
     }, 1000);
   }, 1000);
@@ -104,11 +114,11 @@ window.onload = function() {
 function start(){
   setTimeout(function() {
     //問題数入力時の各処理
-    let from = document.getElementById("questionFrom");
-    let to = document.getElementById("questionTo");
-    //配列の1番目=No.1300より
-    let fromNo = Number(from.value) - 1299;
-    let toNo = Number(to.value) - 1299
+    from = document.getElementById("questionFrom");
+    to = document.getElementById("questionTo");
+    //配列の1番目=No.questionStartNumより
+    fromNo = Number(from.value) - questionStartNum + 1;
+    toNo = Number(to.value) - questionStartNum + 1;
     if(from.value == ""||to.value == ""){
       alert("範囲を入力してください");
       return 1;
@@ -221,9 +231,18 @@ btn4.style.display ="block";
     if(TorF == "T"){
       arrow("T");
       Tcount += 1;
+      rate = Number(rate);
+      rate += 1;
+      localStorage.setItem("rate", rate);
     }else if(TorF == "F"){
       arrow("F");
       Fcount += 1;
+      if(Number(rate) > 0){
+        rate = Number(rate);
+        rate -= 1;
+        localStorage.setItem("rate", rate);
+      }
+      falseQues.push(wordsBef.findIndex(([x]) => x === wordsJpRandom[m]) + questionStartNum);
     }
     //解答・解説
     ctx.clearRect(67.5,800,416.5,100);//En
@@ -276,19 +295,89 @@ function finish(){
   //終了時の条件
   if(Tcount + Fcount == questionN && finishCheckbox == 0){
     finishCheckbox = 1;
-    //結果表示ボタン表示
+    //画面整理
     btn1.style.display ="none";
     btn2.style.display ="none";
     btn3.style.display ="none";
     btn4.style.display ="none";
     ques.style.display ="none";
+    //結果表示ボタン表示
     resultBtn.style.display ="block";
   }
 }
 
 //結果表示
 function result(){
-  alert("result");
+  //画面リセット
+  ctx.fillStyle = "#131328";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ansJp.style.display ="none";
+  ansEn.style.display ="none";
+  exp.style.display ="none";
+  resultBtn.style.display ="none";
+  btn1.style.display ="none";
+  btn2.style.display ="none";
+  btn3.style.display ="none";
+  btn4.style.display ="none";
+  ques.style.display ="none";
+  banar();
+  //バックタイトルボタン表示
+  backTitleBtn.style.display ="block";
+
+  //成績表示
+  ctx.font = "100px sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillStyle = "white";
+  ctx.fillText("正解：" + Tcount + "/" + questionN,485,350);
+  ctx.fillText("不正解：" + Fcount + "/" + questionN,485,470);
+  if(Tcount - Fcount <= 0){
+    ctx.fillStyle = "red";
+  }
+  ctx.fillText("レート：" + (Tcount - Fcount),485,590);
+  ctx.font = "40px sans-serif";
+  ctx.fillStyle = "white";
+  ctx.fillText("次の設定範囲は、こちらを参考にしてください",485,750);
+  ctx.fillText("☟☟",485,800);
+  ctx.fillText("不正解の分布",485,850);
+  ctx.fillRect(150, 860, 680, 50);
+  let unit = 670/(Number(to.value)-Number(from.value));
+  for(let i = 0; i < falseQues.length; i++){
+    ctx.fillStyle = "red";
+    ctx.fillRect(150 + (falseQues[i]-Number(from.value)) * unit ,880,10,10);
+  }
+  ctx.font = "20px sans-serif";
+  ctx.fillStyle = "white";
+  ctx.fillText(from.value,150,935);
+  ctx.fillText(to.value,830,935);
+  if((Number(from.value)-Number(to.value)) % 2 === 0){
+    ctx.fillText(( (Number(from.value)+Number(to.value)) / 2),485,935);
+  }else{
+    ctx.fillText(Number(from.value) + (Number(to.value)-Number(from.value))/3*2,596,935); 
+    ctx.fillText(Number(from.value) + (Number(to.value)-Number(from.value))/3,373,935);
+  }
+}
+
+//リスタート
+function backTitle(){
+  //画面遷移
+  ctx.fillStyle = "#131328";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  title.style.display ="block";
+  longLeap.style.display ="block";
+  profile.style.display ="block";
+  news.style.display ="block";
+  startBtn.style.display ="block";
+  questionNin.style.display ="block";
+  backTitleBtn.style.display ="none";
+  banar();
+  //変数・配列リセット
+  inputed = [];
+  falseQues = [];
+  abcs = [...'abcdefghijklmnopqrstuvwxyz'];
+  TorF = "";
+  Tcount = 0;
+  Fcount = 0;
+  finishCheckbox = 0;
 }
 
 //矢印描画
@@ -351,7 +440,7 @@ function banar(){
   ctx.font = "30px sans-serif";
   ctx.textAlign = "left";
   ctx.fillStyle = "yellow";
-  ctx.fillText("🏆"+ String(rate),15,160);
+  ctx.fillText("🏆"+ String(localStorage.getItem("rate")),15,160);
   ctx.fillStyle = "white";
   ctx.fillText(titles,15,190);
 }
