@@ -45,14 +45,16 @@
 
 <!--出題範囲入力-->
 <div id="questionNin">
-<input type="text" id="questionFrom" placeholder="FROM:">
+<input type="text" id="questionFrom" placeholder="FROM:" value="1300">
 <font id="kara">〜</font>
-<input type="text" id="questionTo" placeholder="TO:">
+<input type="text" id="questionTo" placeholder="TO:" value="1302">
 </div>
 
 <!--画面遷移ボタン-->
-<input type="button" value="START" onclick="start();" id="startBtn"></input>
-<input type="button" value="→RESULT" onclick="result()" id="resultBtn"></input>
+<input type="button" value="START" onclick="start();" id="startBtn">
+<input type="button" value="→RESULT" onclick="result()" id="resultBtn">
+<input type="button" value="EXIT" onclick="result();" id="exitBtn">
+<input type="button" value="→TITLE" onclick="backTitle()" id="backTitleBtn">
 
 <!--入力用ボタン-->
 <div id="btns">
