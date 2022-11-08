@@ -511,11 +511,12 @@ function overlap(array){
   var s = new Set(a);
   return s.size != a.length;
 }
+
+/*
 //2d取得
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-/*
 let r = 100;
 let a = 0;
 let b = 0;
