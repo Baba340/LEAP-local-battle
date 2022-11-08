@@ -511,3 +511,47 @@ function overlap(array){
   var s = new Set(a);
   return s.size != a.length;
 }
+//2d取得
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+/*
+let r = 100;
+let a = 0;
+let b = 0;
+let c = r*Math.sqrt(2);
+let cosDeg = 1/Math.sqrt(2);
+let crossing = [400+r,400+r];
+
+ctx.beginPath();
+ctx.moveTo(400,400);
+ctx.lineTo(400,400+r);
+ctx.lineTo(400+r,400+r);
+ctx.lineTo(400,400);
+ctx.stroke();
+
+setInterval(draw,1000);
+function draw(){
+  a = c;
+  b = r;
+  c = Math.sqrt(a*a + b*b);
+  ctx.beginPath();
+  ctx.moveTo(400,400);
+  ctx.lineTo(crossing[0],crossing[1]);
+  ctx.lineTo(crossing[0]+r*cosDeg,crossing[1]+(-r)*(Math.sqrt(1-cosDeg*cosDeg)));
+  ctx.lineTo(400,400);
+  ctx.stroke();
+  crossing = [crossing[0]+r*cosDeg,crossing[1]+(-r)*(Math.sqrt(1-cosDeg*cosDeg))];
+  let cosDegPlus = yogenn(a,b,c);
+  cosDeg = kahou(cosDeg,cosDegPlus);
+}
+
+function yogenn(a,b,c){
+  let cosB = (a*a+c*c-b*b)/(2*a*c);
+  return cosB;
+}
+function kahou(cosA,cosB){
+  let cosA_B = cosA*cosB - Math.sqrt(1-cosA*cosA)*Math.sqrt(1-cosB*cosB);
+  return cosA_B; 
+}
+*/
