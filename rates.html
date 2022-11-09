@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #canvas{
+      width:970px;
+      height:1465px;
+    }
+    body{ 
+      padding:0;
+      margin:0;
+    }
+    #backBtn{
+      padding:0px;
+      -webkit-appearance: none;
+      border:solid 5px red;
+      color:red;
+      font-size:50px;
+      font-weight:bold;
+      font-family: 'IM Fell DW Pica SC', serif;
+      background-color:#fff; 
+      text-align:center;
+      position:absolute;
+      left:40px;
+      top:40px;
+      width:70px;
+      height:70px;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas" width="1940px" height="2930px"></canvas>
+<input type="button" value="×" onclick="history.back();" id="backBtn">
+<script src="rates.js">
+</script>
+</body>
+</html>
