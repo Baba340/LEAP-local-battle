@@ -62,7 +62,7 @@ let wordsRandom = "";
 let wordsJpRandom = "";
 let wordsEnRandom = "";
 let rate  = localStorage.getItem("rate"); 
-let titles = "LEAPer";
+let titles = "神格者　THE LEAPer";
 let inputed = [];
 let falseQues = [];
 let TorF = "";
@@ -87,6 +87,12 @@ var exps = {
   "orange":"その名の通りオレンジ色の果物で、日本ではみかんともいうが、それらの違いは不明瞭"
 };
 
+//アラート
+if(localStorage.getItem("mes1") == null || localStorage.getItem("mes1") == 0){
+    alert("画面上の+,-ボタンで画面サイズを機種に対応させてください。");
+    localStorage.setItem("mes1",1);
+  }
+
 //オンロード処理
 window.onload = function() {
   //第一画面
@@ -103,7 +109,7 @@ window.onload = function() {
     ],1500);
     setTimeout(function() {
       setTimeout(function() {
-　　　　　//第四画面
+        //第四画面
         ctx.fillStyle = "#131328";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         title.style.display ="block";
@@ -443,6 +449,7 @@ function rateView(){
 
 //バナー描画
 function banar(){
+  titles = returnTitle(rate);
   ctx.beginPath();
   ctx.fillStyle = "#5c3e77";
   ctx.moveTo(0,80);
@@ -469,6 +476,21 @@ function banar(){
   ctx.fillText("🏆"+ String(localStorage.getItem("rate")),30,320);
   ctx.fillStyle = "white";
   ctx.fillText(titles,30,380);
+}
+
+//称号算出
+function returnTitle(rate){
+    if(0 <= rate && rate < 200){
+        return "見習い";
+    }else if(200 <= rate && rate < 500){
+        return "必携er";
+    }else if(500 <= rate && rate < 1000){
+        return "Active Learner";
+    }else if(1000 <= rate && rate < 3000){
+        return "LEAPer";
+    }else if(3000 <= rate){
+        return "神格者 THE LEAPer";
+    }
 }
 
 //ミュート機能
