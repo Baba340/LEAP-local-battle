@@ -1,297 +1,297 @@
 html, body {
-  height: 100%;
-  touch-action: manipulation;
-}
-body{ 
-  margin:0px; 
-  padding:0px;
-  width:970px;
-  height:1465px;
-}
-#canvas{
-  width:970px;
-  height:1465px;
-}
-#title{
-  font-size:200px;
-  font-weight:400;
-  color:#ffd44f;
-  font-family: 'IM Fell DW Pica SC', serif;
-  text-align:center;
-  text-shadow: 0px 8px 0px #ff6e00;
-  padding:0px;
-  margin:0px;
-  position:absolute;
-  top:200px;
-  left:0px;
-  width:970px;
-}
-#loading{
-  font-size:156px;
-  font-family:'Montserrat Subrayada', sans-serif;
-  color:white;
-  text-align:center;
-  line-height:130px;
-  padding:0px;
-  margin:0px;
-  position:absolute;
-  top:497.5px;
-  left:250px;
-  width:500px;
-  height:470px;
-}
-#longLeap{
-  font-size:40px;
-  color:white;
-  text-align:center;
-  padding:0px;
-  margin:0px;
-  position:absolute;
-  top:400px;
-  left:0px;
-  width:970px;
-}
-#profile{
-  font-size:30px;
-  color:white;
-  text-align:center;
-  padding:0px;
-  margin:0px;
-  position:absolute;
-  top:490px;
-  left:0px;
-  width:970px;
-}
-#news{
-  font-size:30px;
-  color:red;
-  text-align:center;
-  padding:0px;
-  margin:0px;
-  position:absolute;
-  top:890px;
-  left:100px;
-  width:770px;
-}
-#startBtn,#resultBtn,#backTitleBtn{
-  padding:0px;
-  -webkit-appearance: none;
-  border:solid 10px #ffd44f;
-  color:#ffd44f;
-  font-size:90px;
-  font-family: 'IM Fell DW Pica SC', serif;
-  background-color:#131328; 
-  text-align:center;
-  position:absolute;
-  left:235px;
-  top:1200px;
-  width:500px;
-  height:150px;
-  text-shadow: 0px 4px 0px #ff6e00;
-  box-shadow: 0px 4px 0px #ff6e00;
-}
-#exitBtn{
-  padding:0px;
-  -webkit-appearance: none;
-  border:solid 10px #ffd44f;
-  color:#ffd44f;
-  font-size:50px;
-  font-family: 'IM Fell DW Pica SC', serif;
-  background-color:#131328; 
-  text-align:center;
-  position:absolute;
-  left:702.5px;
-  top:40px;
-  width:200px;
-  height:100px;
-  text-shadow: 0px 2px 0px #ff6e00;
-  box-shadow: 0px 2px 0px #ff6e00;
-}
-#rateViewBtn{
-  padding:0px;
-  -webkit-appearance: none;
-  border:solid 5px #ffd44f;
-  color:#ffd44f;
-  font-size:50px;
-  font-family: 'IM Fell DW Pica SC', serif;
-  background-color:#131328; 
-  text-align:center;
-  position:absolute;
-  left:450px;
-  top:40px;
-  width:70px;
-  height:70px;
-  text-shadow: 0px 2px 0px #ff6e00;
-  box-shadow: 0px 2px 0px #ff6e00;
-}
-#ctxPlusBtn{
-  padding:0px;
-  -webkit-appearance: none;
-  border:solid 5px #ffd44f;
-  color:#ffd44f;
-  font-size:40px;
-  font-family: 'IM Fell DW Pica SC', serif;
-  background-color:#131328; 
-  text-align:center;
-  position:absolute;
-  left:540px;
-  top:40px;
-  width:60px;
-  height:60px;
-  text-shadow: 0px 2px 0px #ff6e00;
-  box-shadow: 0px 2px 0px #ff6e00;
-}
-#ctxMinusBtn{
-  padding:0px;
-  -webkit-appearance: none;
-  border:solid 5px #ffd44f;
-  color:#ffd44f;
-  font-size:40px;
-  font-family: 'IM Fell DW Pica SC', serif;
-  background-color:#131328; 
-  text-align:center;
-  position:absolute;
-  left:610px;
-  top:40px;
-  width:60px;
-  height:60px;
-  text-shadow: 0px 2px 0px #ff6e00;
-  box-shadow: 0px 2px 0px #ff6e00;
-}
-#questionFrom{
-  padding:0px;
-  -webkit-appearance: none;
-  border:none;
-  border-bottom:solid 5px #ffd44f;
-  color:#ffd44f;
-  font-size:50px;
-  font-family: 'IM Fell DW Pica SC', serif;
-  background-color:#131328; 
-  text-align:center;
-  position:absolute;
-  left:335px;
-  top:1090px;
-  width:100px;
-  height:60px;
-  text-shadow: 0px 3px 0px #ff6e00;
-  box-shadow: 0px 3px 0px #ff6e00;
-}
-#questionTo{
-  padding:0px;
-  -webkit-appearance: none;
-  border:none;
-  border-bottom:solid 5px #ffd44f;
-  color:#ffd44f;
-  font-size:50px;
-  font-family: 'IM Fell DW Pica SC', serif;
-  background-color:#131328; 
-  text-align:center;
-  position:absolute;
-  left:550px;
-  top:1090px;
-  width:100px;
-  height:60px;
-  text-shadow: 0px 3px 0px #ff6e00;
-  box-shadow: 0px 3px 0px #ff6e00;
-}
-#kara{
-  padding:0px;
-  color:#ffd44f;
-  font-size:80px;
-  font-family: 'IM Fell DW Pica SC', serif;
-  text-align:center;
-  position:absolute;
-  left:455px;
-  top:1070px;
-  text-shadow: 0px 3px 0px #ff6e00;
-}
-#questionFrom::placeholder,#questionTo::placeholder {
-  text-shadow: none;
-  font-size:30px;
-}
-#questionFrom:focus, #questionTo:focus{
-  outline: 0;
-}
-#btns input{
-  padding:0px;
-  -webkit-appearance: none;
-  border:solid 10px white;
-  border-radius:30px;
-  color:#ffd44f;
-  font-size:90px;
-  font-weight:600;
-  text-align:center;
-  background-color:#131328;
-}
-#btn1{
-  font-size:50px;
-  position:absolute;
-  left:67.5px;
-  top:1248px;
-  width:184px;
-  height:184px;
-}
-#btn2{
-  font-size:50px;
-  position:absolute;
-  left:284.5px;
-  top:1248px;
-  width:184px;
-  height:184px;
-}
-#btn3{
-  font-size:50px;
-  position:absolute;
-  left:501.5px;
-  top:1248px;
-  width:184px;
-  height:184px;
-}
-#btn4{
-  font-size:50px;
-  position:absolute;
-  left:718.5px;
-  top:1248px;
-  width:184px;
-  height:184px;
-}
-#mute{
-  -webkit-appearance: none;
-  border:solid 1px black;
-  border-radius:0px;
-  color:#131328;
-  font-size:40px;
-  position:absolute;
-  left:782.5px;
-  top:40px;
-  text-align:center;
-  padding:0px;
-  width:120px;
-}
-#ques{
-  color:black;
-  font-size:60px;
-  font-family:sans-serif;
-  line-height:60px;
-  text-align:center;
-  position:absolute;
-  width:805px;
-}
-#ansJp,#ansEn{
-  color:black;
-  font-size:30px;
-  font-family:sans-serif;
-  line-height:30px;
-  text-align:center;
-  position:absolute;
-  width:406.5px;
-}
-#exp{
-  color:black;
-  font-size:30px;
-  font-family:sans-serif;
-  line-height:30px;
-  text-align:center;
-  position:absolute;
-  width:825px;
-}
+    height: 100%;
+    touch-action: manipulation;
+  }
+  body{ 
+    margin:0px; 
+    padding:0px;
+    width:970px;
+    height:1465px;
+  }
+  #canvas{
+    width:970px;
+    height:1465px;
+  }
+  #title{
+    font-size:200px;
+    font-weight:400;
+    color:#ffd44f;
+    font-family: 'IM Fell DW Pica SC', serif;
+    text-align:center;
+    text-shadow: 0px 8px 0px #ff6e00;
+    padding:0px;
+    margin:0px;
+    position:absolute;
+    top:200px;
+    left:0px;
+    width:970px;
+  }
+  #loading{
+    font-size:156px;
+    font-family:'Montserrat Subrayada', sans-serif;
+    color:white;
+    text-align:center;
+    line-height:130px;
+    padding:0px;
+    margin:0px;
+    position:absolute;
+    top:497.5px;
+    left:250px;
+    width:500px;
+    height:470px;
+  }
+  #longLeap{
+    font-size:40px;
+    color:white;
+    text-align:center;
+    padding:0px;
+    margin:0px;
+    position:absolute;
+    top:400px;
+    left:0px;
+    width:970px;
+  }
+  #profile{
+    font-size:30px;
+    color:white;
+    text-align:center;
+    padding:0px;
+    margin:0px;
+    position:absolute;
+    top:490px;
+    left:0px;
+    width:970px;
+  }
+  #news{
+    font-size:30px;
+    color:red;
+    text-align:center;
+    padding:0px;
+    margin:0px;
+    position:absolute;
+    top:890px;
+    left:100px;
+    width:770px;
+  }
+  #startBtn,#resultBtn,#backTitleBtn{
+    padding:0px;
+    -webkit-appearance: none;
+    border:solid 10px #ffd44f;
+    color:#ffd44f;
+    font-size:90px;
+    font-family: 'IM Fell DW Pica SC', serif;
+    background-color:#131328; 
+    text-align:center;
+    position:absolute;
+    left:235px;
+    top:1200px;
+    width:500px;
+    height:150px;
+    text-shadow: 0px 4px 0px #ff6e00;
+    box-shadow: 0px 4px 0px #ff6e00;
+  }
+  #exitBtn{
+    padding:0px;
+    -webkit-appearance: none;
+    border:solid 10px #ffd44f;
+    color:#ffd44f;
+    font-size:50px;
+    font-family: 'IM Fell DW Pica SC', serif;
+    background-color:#131328; 
+    text-align:center;
+    position:absolute;
+    left:702.5px;
+    top:40px;
+    width:200px;
+    height:100px;
+    text-shadow: 0px 2px 0px #ff6e00;
+    box-shadow: 0px 2px 0px #ff6e00;
+  }
+  #rateViewBtn{
+    padding:0px;
+    -webkit-appearance: none;
+    border:solid 5px #ffd44f;
+    color:#ffd44f;
+    font-size:50px;
+    font-family: 'IM Fell DW Pica SC', serif;
+    background-color:#131328; 
+    text-align:center;
+    position:absolute;
+    left:450px;
+    top:40px;
+    width:70px;
+    height:70px;
+    text-shadow: 0px 2px 0px #ff6e00;
+    box-shadow: 0px 2px 0px #ff6e00;
+  }
+  #ctxPlusBtn{
+    padding:0px;
+    -webkit-appearance: none;
+    border:solid 5px #ffd44f;
+    color:#ffd44f;
+    font-size:40px;
+    font-family: 'IM Fell DW Pica SC', serif;
+    background-color:#131328; 
+    text-align:center;
+    position:absolute;
+    left:540px;
+    top:40px;
+    width:60px;
+    height:60px;
+    text-shadow: 0px 2px 0px #ff6e00;
+    box-shadow: 0px 2px 0px #ff6e00;
+  }
+  #ctxMinusBtn{
+    padding:0px;
+    -webkit-appearance: none;
+    border:solid 5px #ffd44f;
+    color:#ffd44f;
+    font-size:40px;
+    font-family: 'IM Fell DW Pica SC', serif;
+    background-color:#131328; 
+    text-align:center;
+    position:absolute;
+    left:610px;
+    top:40px;
+    width:60px;
+    height:60px;
+    text-shadow: 0px 2px 0px #ff6e00;
+    box-shadow: 0px 2px 0px #ff6e00;
+  }
+  #questionFrom{
+    padding:0px;
+    -webkit-appearance: none;
+    border:none;
+    border-bottom:solid 5px #ffd44f;
+    color:#ffd44f;
+    font-size:50px;
+    font-family: 'IM Fell DW Pica SC', serif;
+    background-color:#131328; 
+    text-align:center;
+    position:absolute;
+    left:335px;
+    top:1090px;
+    width:100px;
+    height:60px;
+    text-shadow: 0px 3px 0px #ff6e00;
+    box-shadow: 0px 3px 0px #ff6e00;
+  }
+  #questionTo{
+    padding:0px;
+    -webkit-appearance: none;
+    border:none;
+    border-bottom:solid 5px #ffd44f;
+    color:#ffd44f;
+    font-size:50px;
+    font-family: 'IM Fell DW Pica SC', serif;
+    background-color:#131328; 
+    text-align:center;
+    position:absolute;
+    left:550px;
+    top:1090px;
+    width:100px;
+    height:60px;
+    text-shadow: 0px 3px 0px #ff6e00;
+    box-shadow: 0px 3px 0px #ff6e00;
+  }
+  #kara{
+    padding:0px;
+    color:#ffd44f;
+    font-size:80px;
+    font-family: 'IM Fell DW Pica SC', serif;
+    text-align:center;
+    position:absolute;
+    left:455px;
+    top:1070px;
+    text-shadow: 0px 3px 0px #ff6e00;
+  }
+  #questionFrom::placeholder,#questionTo::placeholder {
+    text-shadow: none;
+    font-size:30px;
+  }
+  #questionFrom:focus, #questionTo:focus{
+    outline: 0;
+  }
+  #btns input{
+    padding:0px;
+    -webkit-appearance: none;
+    border:solid 10px white;
+    border-radius:30px;
+    color:#ffd44f;
+    font-size:90px;
+    font-weight:600;
+    text-align:center;
+    background-color:#131328;
+  }
+  #btn1{
+    font-size:50px;
+    position:absolute;
+    left:67.5px;
+    top:1248px;
+    width:184px;
+    height:184px;
+  }
+  #btn2{
+    font-size:50px;
+    position:absolute;
+    left:284.5px;
+    top:1248px;
+    width:184px;
+    height:184px;
+  }
+  #btn3{
+    font-size:50px;
+    position:absolute;
+    left:501.5px;
+    top:1248px;
+    width:184px;
+    height:184px;
+  }
+  #btn4{
+    font-size:50px;
+    position:absolute;
+    left:718.5px;
+    top:1248px;
+    width:184px;
+    height:184px;
+  }
+  #mute{
+    -webkit-appearance: none;
+    border:solid 1px black;
+    border-radius:0px;
+    color:#131328;
+    font-size:40px;
+    position:absolute;
+    left:782.5px;
+    top:40px;
+    text-align:center;
+    padding:0px;
+    width:120px;
+  }
+  #ques{
+    color:black;
+    font-size:60px;
+    font-family:sans-serif;
+    line-height:60px;
+    text-align:center;
+    position:absolute;
+    width:805px;
+  }
+  #ansJp,#ansEn{
+    color:black;
+    font-size:30px;
+    font-family:sans-serif;
+    line-height:30px;
+    text-align:center;
+    position:absolute;
+    width:406.5px;
+  }
+  #exp{
+    color:black;
+    font-size:30px;
+    font-family:sans-serif;
+    line-height:30px;
+    text-align:center;
+    position:absolute;
+    width:825px;
+  }
