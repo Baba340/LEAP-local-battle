@@ -7,6 +7,7 @@ var query = location.search;
 var value = query.split('=');
 let rate = decodeURIComponent(value[1]);
 //let rate = 5454;
+document.getElementById("mail").setAttribute("href", "mailto:alc_mashle@icloud.com?body=" + rate);
 
 //グローバル変数
 let intervalCheck = 0;
@@ -23,6 +24,7 @@ ctx.fillRect(1150,0,20,canvas.height);
 ctx.fillStyle = "#ded2df";
 ctx.fillRect(640,0,40,canvas.height);
 ctx.fillRect(1260,0,40,canvas.height);
+beforeSee();
 
 //区切りレート描画
 drawRateForm(220,"神格者　THE LEAPer");
@@ -61,7 +63,7 @@ function drawRateForm(y,text){
 }
 //レート詳細描画
 drawRate(220,3000);
-drawRate(940*2,1500);
+drawRate(940*2,1000);
 drawRate(1147.5*2,500);
 drawRate(1272*2,200);
 drawRate(1355*2,0);
@@ -106,4 +108,23 @@ function myRateIn(){
   if(i > 3000){
   ctx.fillText("🏆" + i, 635*2+60*Math.sqrt(3),125*2);}else{
   ctx.fillText("🏆" + i, 635*2+60*Math.sqrt(3),y+30);}
+  beforeSee();
 }
+
+//新しいタブのように描画
+function beforeSee(){
+    ctx.fillStyle = "#131328";
+    ctx.fillRect(0, 0, 1940,70);
+    ctx.fillRect(0, 0, 70, 2930);
+    ctx.fillRect(1870, 0, 70, 2930);
+    ctx.fillRect(0, 2860, 1940, 70);
+    ctx.beginPath();
+    ctx.strokeStyle = "white";
+    ctx.lineWidth=10;
+    ctx.moveTo(70,70);
+    ctx.lineTo(1870,70);
+    ctx.lineTo(1870,2860);
+    ctx.lineTo(70,2860);
+    ctx.lineTo(70,70);
+    ctx.stroke();
+  }
