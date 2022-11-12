@@ -6,8 +6,10 @@ const ctx = canvas.getContext("2d");
 var query = location.search;
 var value = query.split('=');
 let rate = decodeURIComponent(value[1]);
-//let rate = 5454;
-document.getElementById("mail").setAttribute("href", "mailto:alc_mashle@icloud.com?body=" + rate);
+rate = rate.replace(/[^0-9]/g,"");
+//let rate = 5412;
+let name = decodeURIComponent(value[2]);;
+document.getElementById("mail").setAttribute("href", "mailto:alc_mashle@icloud.com?body=" + name +"/"+ rate);
 
 //グローバル変数
 let intervalCheck = 0;
