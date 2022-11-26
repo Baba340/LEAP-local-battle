@@ -15,32 +15,69 @@
 
 <!--タイトル画面-->
 <div id="loading">ALC<br>PGM<br>ORG</div>
-<h1 id="title">L E A P</h1>
-<div id="longLeap">
-    <font color="#ff6e00">L</font>
-    <font>earn</font>
-    <font color="#ff6e00">E</font>
-    <font>nglish vocabulary, both</font>
-    <font color="#ff6e00">A</font>
-    <font>ctive and</font>
-    <font color="#ff6e00">P</font>
-    <font>assive</font>
+
+<div id="leapTitle">
+    <h1 id="title">L E A P</h1>
+    <div id="longLeap">
+        <font color="#ff6e00">L</font>
+        <font>earn</font>
+        <font color="#ff6e00">E</font>
+        <font>nglish vocabulary, both</font>
+        <font color="#ff6e00">A</font>
+        <font>ctive and</font>
+        <font color="#ff6e00">P</font>
+        <font>assive</font>
+    </div>
 </div>
+<div id="teppekiTitle">
+    <h1 id="title" style="top:160px;color:red;text-shadow: 0px 5px 0px #ff6e00;">鉄壁</h1>
+    <div id="longLeap" style="top:420px;font-weight:bold;">
+        <font color="#037bbf">鉄緑会</font>
+        <font>東大英単語熟語</font>
+    </div>
+</div>
+<div id="kobunTitle">
+    <h1 id="title" style="top:180px;color:white;font-size:170px;text-shadow: 0px 5px 0px #ff6e00;">古文単語</h1>
+    <div id="longLeap" style="top:410px;font-weight:bold;">
+        <font color="white">読んで</font>
+        <font color="#ff6e00">見て</font>
+        <font color="white">覚える</font>
+        <font color="#ff6e00">315</font>
+    </div>
+</div>
+
 <div id="profile">
     <br>
     <b style="font-size: 35px;">制作 / 編集&emsp;BABA KOKI</b>
     <br>
-    <font>元祖LEAPer&emsp;ARITA TAIYO</font>
-    <br><br>
+    <br>
     <font>協力&emsp;
     <br>OOTSUKA TAKUMI
+    <br>ARITA TAIYO
     <br>NODA KOGA
     <br>ARAKAWA TAKESHI</font>
 </div>
-<div id="news">
-    <font color="red">※見出語No.1～1935の全ての問題が有効になりました。</font>
-    <br>
-    <font color="red">※見出語No.0～0の解説が有効になりました。</font>
+
+<div id="leapNews">
+    <div id="news">
+        <font color="red">※見出語No.1～1935の全ての問題を追加しました</font>
+        <br>
+        <font color="red">※見出語No.0～0の解説を追加しました</font>
+    </div>
+</div>
+<div id="teppekiNews">
+    <div id="news">
+        <font color="red">※見出語No.1～2176の全ての問題を追加しました</font>
+        <br>
+        <font color="red">※見出語No.0～0の解説を追加しました</font>
+    </div>
+</div>
+<div id="kobunNews">
+    <div id="news">
+        <font color="red">※見出語No.181～220の問題を追加しました</font>
+        <br>
+        <font color="red">※見出語No.0～0の解説を追加しました</font>
+    </div>
 </div>
 
 <!--出題範囲入力-->
@@ -70,7 +107,12 @@
 <!--canvasサイズ調整ボタン-->
 <input type="button" value="+" onclick="ctxPlus()" id="ctxPlusBtn"></input>
 <input type="button" value="-" onclick="ctxMinus()" id="ctxMinusBtn"></input>
-</div>
+
+<!--レート引継ぎボタン-->
+<input type="button" value="🗝" onclick="handOver()" id="handOverBtn"></input>
+
+<!--モード切替ボタン-->
+<input type="button" value="↺" onclick="mode()" id="modeBtn"></input>
 
 <!--問題要素-->
 <div id="ques">あああ</div>
